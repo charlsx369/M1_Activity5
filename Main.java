@@ -1,22 +1,18 @@
-
 public class Main {
     public static void main(String[] args) {
 
-        ATMTransaction atmTxn = new ATMTransaction();
+        AccountValidator validator = new AccountValidator();
 
-        System.out.println("==== ATM BALANCE INQUIRY SYSTEM ====\n");
+        System.out.println("=== Account Number Validation Test ===");
 
-        System.out.println("--- Test Case 1: Valid Savings Account ---");
-        atmTxn.checkBalance("100123456", 15000.00);
+        validator.testValidation("Test 1: Valid account (1234567890)", "1234567890");
 
-        System.out.println("--- Test Case 2: Valid Checking Account ---");
-        atmTxn.checkBalance("200987654", 25000.00);
+        validator.testValidation("Test 2: Too short (123)", "123");
 
-        System.out.println("--- Test Case 3: Invalid Account Number Format ---");
-        atmTxn.checkBalance("ABC12345", 15000.00);
+        validator.testValidation("Test 2: Contains letters (12345ABC90)", "12345ABC90");
 
-        System.out.println("--- Test Case 4: Empty Account Number ---");
-        atmTxn.checkBalance("", 15000.00);
+        validator.testValidation("Test 4: Contains space (1234 567890)", "1234 567890");
+
+        validator.testValidation("Test 5: Null value", null);
     }
-
 }
